@@ -1,6 +1,13 @@
 {
   "name": "vi-data-grid",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "private": "false",
+  "author": "violice",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/violice/vi-data-grid.git"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
