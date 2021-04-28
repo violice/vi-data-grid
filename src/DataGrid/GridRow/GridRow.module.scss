@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+
+  td {
+    background-color: #fff;
+  }
+
+  &:nth-of-type(odd) {
+    td {
+      background-color: #f8f8f8;
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #edeff7;
+  }
+}
