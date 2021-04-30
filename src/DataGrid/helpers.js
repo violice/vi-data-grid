@@ -10,21 +10,121 @@ export const compose = (...functions) => {
   return functions.reduce((a, b) => (...args) => a(b(...args)));
 };
 
-export const prepareColumns = columns => {
-  return columns.map((column, index) => {
-    const left =
-      column.isSticky &&
-      columns
+const calculateLeft = (column, index, colDefs) => {
+  return column.isSticky
+    ? colDefs
         .slice(0, index)
-        .reduce((acc, column) => (acc += column.width || DEFAULT_COL_DEF.width), 0);
+        .reduce((acc, column) => (acc += column.width || DEFAULT_COL_DEF.width), 0)
+    : 0;
+};
+
+/*
+TODO:
+  - refacor
+  - add header cell text wraping  right styles
+*/
+
+export const prepareColumns = colDefs => {
+  const headerGroups = [[]];
+  const columns = [];
+
+  const multipleGroups = colDefs.some(column => column.columns);
+
+  if (multipleGroups) {
+    headerGroups.push([]);
+
+    colDefs.forEach(column => {
+      if (column.columns) {
+        headerGroups[0].push({
+          ...column,
+          isSortable: false,
+          width: column.columns.reduce(
+            (acc, innerColumn) => acc + (innerColumn.width || DEFAULT_COL_DEF.width),
+            0,
+          ),
+        });
+        column.columns.forEach(innerColumn => {
+          columns.push(innerColumn);
+          headerGroups[1].push(innerColumn);
+        });
+      } else {
+        columns.push(column);
+        headerGroups[0].push({ ...column, header: '' });
+        headerGroups[1].push({
+          ...column,
+          headerCellStyle: multipleGroups ? { height: 100, marginTop: -50 } : {},
+        });
+      }
+    });
 
     return {
-      ...DEFAULT_COL_DEF,
-      ...column,
-      left,
+      headerGroups: [
+        headerGroups[0].map((column, index) => {
+          return {
+            ...DEFAULT_COL_DEF,
+            ...column,
+            left: calculateLeft(column, index, colDefs),
+          };
+        }),
+        headerGroups[1].map((column, index) => {
+          return {
+            ...DEFAULT_COL_DEF,
+            ...column,
+            left: calculateLeft(column, index, colDefs),
+          };
+        }),
+      ],
+      columns: columns.map((column, index) => {
+        return {
+          ...DEFAULT_COL_DEF,
+          ...column,
+          left: calculateLeft(column, index, colDefs),
+        };
+      }),
     };
-  });
+  } else {
+    colDefs.forEach(column => {
+      columns.push(column);
+      headerGroups[0].push(column);
+    });
+
+    return {
+      headerGroups: [
+        headerGroups[0].map((column, index) => {
+          return {
+            ...DEFAULT_COL_DEF,
+            ...column,
+            left: calculateLeft(column, index, colDefs),
+          };
+        }),
+      ],
+      columns: columns.map((column, index) => {
+        return {
+          ...DEFAULT_COL_DEF,
+          ...column,
+          left: calculateLeft(column, index, colDefs),
+        };
+      }),
+    };
+  }
 };
+
+// DEPRECATED
+// export const prepareColumns = columns => {
+//   return columns.map((column, index) => {
+//     const left =
+//       column.isSticky &&
+//       columns
+//         .slice(0, index)
+//         .reduce((acc, column) => (acc += column.width || DEFAULT_COL_DEF.width), 0);
+
+//     return {
+//       ...DEFAULT_COL_DEF,
+//       ...column,
+//       left,
+//     };
+//   });
+// };
 
 const checkGridRowIdIsValid = (id, row) => {
   if (id === null || id === undefined) {

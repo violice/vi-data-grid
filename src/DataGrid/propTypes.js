@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 export const ColumnPropType = PropTypes.shape({
   header: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
+
   type: PropTypes.string,
+
   width: PropTypes.number,
   flex: PropTypes.number,
 

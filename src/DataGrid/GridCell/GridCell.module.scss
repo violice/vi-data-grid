@@ -5,10 +5,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &:not(:last-child) {
-    border-right: 1px solid #edeff7;
-  }
+  border-right: 1px solid #edeff7;
 }
 
 .sticky {

@@ -10,7 +10,9 @@ const reducer = compose(
 )((state, action) => {
   switch (action.type) {
     case 'COLUMNS_UPDATED':
-      state.columns = action.payload;
+      const { headerGroups, columns } = action.payload;
+      state.headerGroups = headerGroups;
+      state.columns = columns;
       break;
 
     case 'ROWS_UPDATED':
@@ -48,6 +50,9 @@ const reducer = compose(
 });
 
 const initialState = {
+  headerGroups: [],
+  columns: [],
+  rows: [],
   sort: { order: 'none', field: null },
   page: 0,
   pageSize: 100,
@@ -58,8 +63,8 @@ const useGridState = ({ colDefs, rowDefs, getRowId, onCellEdited }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const columns = prepareColumns(colDefs);
-    dispatch({ type: 'COLUMNS_UPDATED', payload: columns });
+    const { headerGroups, columns } = prepareColumns(colDefs);
+    dispatch({ type: 'COLUMNS_UPDATED', payload: { headerGroups, columns } });
   }, [colDefs]);
 
   useEffect(() => {

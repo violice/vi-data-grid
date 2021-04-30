@@ -17,7 +17,7 @@ import useGridState from './useGridState';
 ### Phase 1
 
 * [x] Pagination (page, pageSize)
-* Header groups
+* [x] Header groups
 * Title and reload
 * Save sort to local storage
 * Loading and NoData overlays
@@ -47,6 +47,7 @@ const DataGrid = ({
   onCellEdited,
 }) => {
   const {
+    headerGroups,
     columns,
     rows,
     sort,
@@ -81,7 +82,7 @@ const DataGrid = ({
           <GridWindow width={width} height={height} isVirtualized={isVirtualized}>
             {scrollTop => (
               <GridContent>
-                <GridHeader columns={columns} sort={sort} changeSort={changeSort} />
+                <GridHeader headerGroups={headerGroups} sort={sort} changeSort={changeSort} />
                 <GridBody
                   columns={columns}
                   rows={rows}
@@ -108,7 +109,9 @@ DataGrid.propTypes = {
     PropTypes.shape({
       header: PropTypes.string.isRequired,
       field: PropTypes.string.isRequired,
+
       type: PropTypes.string,
+
       width: PropTypes.number,
       flex: PropTypes.number,
 
