@@ -7,13 +7,13 @@ Data grid component for react
 npm
 
 ```sh
-npm i -s https://github.com/violice/vi-data-grid
+npm i -s vi-data-grid
 ```
 
 yarn
 
 ```sh
-yarn add https://github.com/violice/vi-data-grid
+yarn add vi-data-grid
 ```
 
 ## Usage
