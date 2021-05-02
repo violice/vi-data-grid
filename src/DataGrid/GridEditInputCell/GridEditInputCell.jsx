@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import styles from './GridEditInputCell.module.scss';
 
 const GridEditInputCell = ({
   rowId,
@@ -22,6 +23,7 @@ const GridEditInputCell = ({
   return (
     <input
       ref={ref}
+      className={styles.root}
       type={colDef.type}
       value={innerValue}
       onChange={e => setInnerValue(e.target.value)}

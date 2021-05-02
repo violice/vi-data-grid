@@ -1,4 +1,4 @@
-const COLUMNS_COUNT = 10;
+const COLUMNS_COUNT = 20;
 const ROWS_COUNT = 10000;
 
 export const generateColumns = () => {

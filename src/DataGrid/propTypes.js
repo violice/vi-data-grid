@@ -18,8 +18,6 @@ export const ColumnPropType = PropTypes.shape({
 
   renderCell: PropTypes.func,
   renderEditCell: PropTypes.func,
-
-  getRowId: PropTypes.func,
 });
 
 export const RowPropType = PropTypes.shape({

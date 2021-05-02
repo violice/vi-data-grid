@@ -10,6 +10,7 @@ const GridBody = ({
   height,
   scrollTop,
   editedCell,
+  updateCell,
   startCellEditing,
   cancelCellEditing,
   finishCellEditing,
@@ -32,6 +33,7 @@ const GridBody = ({
             data={row.data}
             columns={columns}
             editedCell={editedCell}
+            updateCell={updateCell}
             startCellEditing={startCellEditing}
             cancelCellEditing={cancelCellEditing}
             finishCellEditing={finishCellEditing}

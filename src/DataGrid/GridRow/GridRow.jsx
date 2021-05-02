@@ -6,6 +6,7 @@ const GridRow = ({
   id,
   data,
   columns,
+  updateCell,
   editedCell,
   startCellEditing,
   cancelCellEditing,
@@ -41,6 +42,7 @@ const GridRow = ({
             ...params,
             value,
             formattedValue,
+            updateCell,
           });
         }
 

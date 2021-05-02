@@ -63,14 +63,14 @@ export const prepareColumns = colDefs => {
           return {
             ...DEFAULT_COL_DEF,
             ...column,
-            left: calculateLeft(column, index, colDefs),
+            left: calculateLeft(column, index, headerGroups[0]),
           };
         }),
         headerGroups[1].map((column, index) => {
           return {
             ...DEFAULT_COL_DEF,
             ...column,
-            left: calculateLeft(column, index, colDefs),
+            left: calculateLeft(column, index,  headerGroups[1]),
           };
         }),
       ],
@@ -78,7 +78,7 @@ export const prepareColumns = colDefs => {
         return {
           ...DEFAULT_COL_DEF,
           ...column,
-          left: calculateLeft(column, index, colDefs),
+          left: calculateLeft(column, index, columns),
         };
       }),
     };
@@ -94,7 +94,7 @@ export const prepareColumns = colDefs => {
           return {
             ...DEFAULT_COL_DEF,
             ...column,
-            left: calculateLeft(column, index, colDefs),
+            left: calculateLeft(column, index, headerGroups[0]),
           };
         }),
       ],
@@ -102,7 +102,7 @@ export const prepareColumns = colDefs => {
         return {
           ...DEFAULT_COL_DEF,
           ...column,
-          left: calculateLeft(column, index, colDefs),
+          left: calculateLeft(column, index, columns),
         };
       }),
     };

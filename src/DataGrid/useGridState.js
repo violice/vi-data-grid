@@ -31,6 +31,12 @@ const reducer = compose(
       state.pageSize = action.payload;
       break;
 
+    case 'CELL_CHANGED':
+      const { rowId, field, value } = action.payload;
+      const index = state.rows.findIndex(row => row.id === rowId);
+      state.rows[index].data[field] = value;
+      break;
+
     case 'CELL_EDITING_STARTED':
       state.editedCell = action.payload;
       break;
@@ -59,7 +65,7 @@ const initialState = {
   editedCell: null,
 };
 
-const useGridState = ({ colDefs, rowDefs, getRowId, onCellEdited }) => {
+const useGridState = ({ colDefs, rowDefs, getRowId, onCellChange, onCellEdited }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -74,7 +80,6 @@ const useGridState = ({ colDefs, rowDefs, getRowId, onCellEdited }) => {
 
   const changeSort = ({ field }) => {
     const order = field === state.sort.field ? SORT_ORDERS[state.sort.order] : 'ascending';
-
     dispatch({
       type: 'SORT_CHANGED',
       payload: { order, field },
@@ -89,11 +94,18 @@ const useGridState = ({ colDefs, rowDefs, getRowId, onCellEdited }) => {
     dispatch({ type: 'PAGE_SIZE_CHANGED', payload: pageSize });
   };
 
+  const updateCell = ({ rowId, field, value, rowData }) => {
+    dispatch({ type: 'CELL_CHANGED' });
+    onCellChange && onCellChange({ rowId, field, value, rowData });
+  };
+
   const startCellEditing = ({ rowId, field }) => {
     dispatch({ type: 'CELL_EDITING_STARTED', payload: { rowId, field } });
   };
 
-  const cancelCellEditing = () => dispatch({ type: 'CELL_EDITING_CANCELED' });
+  const cancelCellEditing = () => {
+    dispatch({ type: 'CELL_EDITING_CANCELED' });
+  };
 
   const finishCellEditing = ({ rowId, field, value, rowData }) => {
     dispatch({
@@ -108,6 +120,7 @@ const useGridState = ({ colDefs, rowDefs, getRowId, onCellEdited }) => {
     changeSort,
     changePage,
     changePageSize,
+    updateCell,
     startCellEditing,
     cancelCellEditing,
     finishCellEditing,

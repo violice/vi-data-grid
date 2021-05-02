@@ -44,6 +44,7 @@ const DataGrid = ({
   pagesCount,
   rowsCount,
   getRowId,
+  onCellChange,
   onCellEdited,
 }) => {
   const {
@@ -57,6 +58,7 @@ const DataGrid = ({
     changeSort,
     changePage,
     changePageSize,
+    updateCell,
     startCellEditing,
     cancelCellEditing,
     finishCellEditing,
@@ -64,6 +66,7 @@ const DataGrid = ({
     colDefs,
     rowDefs,
     getRowId,
+    onCellChange,
     onCellEdited,
   });
 
@@ -77,12 +80,14 @@ const DataGrid = ({
         onPageChange={changePage}
         onPageSizeChange={changePageSize}
       />
+
       <GridAutoSizer>
         {({ width, height }) => (
           <GridWindow width={width} height={height} isVirtualized={isVirtualized}>
             {scrollTop => (
               <GridContent>
                 <GridHeader headerGroups={headerGroups} sort={sort} changeSort={changeSort} />
+
                 <GridBody
                   columns={columns}
                   rows={rows}
@@ -90,6 +95,7 @@ const DataGrid = ({
                   height={height}
                   scrollTop={scrollTop}
                   editedCell={editedCell}
+                  updateCell={updateCell}
                   startCellEditing={startCellEditing}
                   cancelCellEditing={cancelCellEditing}
                   finishCellEditing={finishCellEditing}
@@ -99,6 +105,7 @@ const DataGrid = ({
           </GridWindow>
         )}
       </GridAutoSizer>
+
       <GridPagination pagesCount={pagesCount} page={page} onPageChange={changePage} />
     </GridRoot>
   );
@@ -132,6 +139,7 @@ DataGrid.propTypes = {
   pagesCount: PropTypes.number,
   rowsCount: PropTypes.number,
   getRowId: PropTypes.func,
+  onCellChange: PropTypes.func,
   onCellEdited: PropTypes.func,
 };
 
@@ -142,6 +150,7 @@ DataGrid.defaultProps = {
   pagesCount: 0,
   rowsCount: 0,
   getRowId: null,
+  onCellChange: null,
   onCellEdited: null,
 };
 
