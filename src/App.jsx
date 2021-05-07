@@ -19,6 +19,11 @@ const App = () => {
             label: 'Copy',
             icon: <span>[C]</span>
           },
+          {
+            key: 'delete',
+            label: 'Delete',
+            icon: <span>[D]</span>
+          }
         ]}
         onRowMenuItemClick={e => console.log(e)}
       />

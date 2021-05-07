@@ -16,13 +16,14 @@ import useGridState from './useGridState';
 
 ### Phase 1
 
-* [x] Pagination (page, pageSize)
+* [x] Pagination
 * [x] Header groups
-* Title and reload
-* Save sort to local storage
-* Loading and NoData overlays
-* Infinite scroll
-* Row menu
+* [x] Row menu
+* [ ] Toolbar (title, reload, pagesize)
+* [ ] Icons (menu, sort)
+* [ ] Loading and NoData overlays
+* [ ] Infinite scroll
+* [ ] Save sort to local storage
 
 ### Phase 2
 

@@ -29,10 +29,14 @@ const GridRowMenu = ({ rowId, rowData, items, onItemClick }) => {
   });
 
   return (
-    <>
-      <td ref={setReferenceElement} className={styles.root} onClick={() => setIsOpened(!isOpened)}>
+    <td className={styles.root}>
+      <span
+        ref={setReferenceElement}
+        className={styles.trigger}
+        onClick={() => setIsOpened(!isOpened)}
+      >
         menu
-      </td>
+      </span>
 
       {isOpened &&
         ReactDOM.createPortal(
@@ -63,7 +67,7 @@ const GridRowMenu = ({ rowId, rowData, items, onItemClick }) => {
           </div>,
           document.body,
         )}
-    </>
+    </td>
   );
 };
 

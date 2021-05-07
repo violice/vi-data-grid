@@ -2,6 +2,13 @@
   position: sticky;
   right: 0;
   z-index: 45;
+  flex: 1;
+}
+
+.trigger {
+  width: 42px;
+  display: block;
+  margin-left: auto;
 }
 
 .popper {
