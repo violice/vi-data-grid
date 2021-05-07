@@ -52,6 +52,9 @@ const reducer = compose(
       state.editedCell = null;
       break;
     }
+
+    default:
+      break;
   }
 });
 
@@ -60,12 +63,20 @@ const initialState = {
   columns: [],
   rows: [],
   sort: { order: 'none', field: null },
-  page: 0,
+  page: 1,
   pageSize: 100,
   editedCell: null,
 };
 
-const useGridState = ({ colDefs, rowDefs, getRowId, onCellChange, onCellEdited }) => {
+const useGridState = ({
+  colDefs,
+  rowDefs,
+  getRowId,
+  onCellChange,
+  onCellEdited,
+  onPageChange,
+  onPageSizeChange,
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -88,10 +99,12 @@ const useGridState = ({ colDefs, rowDefs, getRowId, onCellChange, onCellEdited }
 
   const changePage = page => {
     dispatch({ type: 'PAGE_CHANGED', payload: page });
+    onPageChange(page);
   };
 
   const changePageSize = pageSize => {
     dispatch({ type: 'PAGE_SIZE_CHANGED', payload: pageSize });
+    onPageSizeChange(pageSize);
   };
 
   const updateCell = ({ rowId, field, value, rowData }) => {

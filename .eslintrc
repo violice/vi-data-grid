@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "quotes": [2, "single"],
+    "semi": [2, "always"],
+    "no-throw-literal": "off",
+    "import/no-anonymous-default-export": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}

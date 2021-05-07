@@ -44,8 +44,12 @@ const DataGrid = ({
   pagesCount,
   rowsCount,
   getRowId,
+  rowMenu,
   onCellChange,
   onCellEdited,
+  onPageChange,
+  onPageSizeChange,
+  onRowMenuItemClick,
 }) => {
   const {
     headerGroups,
@@ -68,6 +72,8 @@ const DataGrid = ({
     getRowId,
     onCellChange,
     onCellEdited,
+    onPageChange,
+    onPageSizeChange,
   });
 
   return (
@@ -91,14 +97,16 @@ const DataGrid = ({
                 <GridBody
                   columns={columns}
                   rows={rows}
-                  isVirtualized={isVirtualized}
                   height={height}
+                  isVirtualized={isVirtualized}
+                  rowMenu={rowMenu}
                   scrollTop={scrollTop}
                   editedCell={editedCell}
                   updateCell={updateCell}
                   startCellEditing={startCellEditing}
                   cancelCellEditing={cancelCellEditing}
                   finishCellEditing={finishCellEditing}
+                  onRowMenuItemClick={onRowMenuItemClick}
                 />
               </GridContent>
             )}
@@ -139,8 +147,18 @@ DataGrid.propTypes = {
   pagesCount: PropTypes.number,
   rowsCount: PropTypes.number,
   getRowId: PropTypes.func,
+  rowMenu: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.element,
+    }),
+  ),
   onCellChange: PropTypes.func,
   onCellEdited: PropTypes.func,
+  onPageChange: PropTypes.func,
+  onPageSizeChange: PropTypes.func,
+  onRowMenuItemClick: PropTypes.func,
 };
 
 DataGrid.defaultProps = {
@@ -150,8 +168,12 @@ DataGrid.defaultProps = {
   pagesCount: 0,
   rowsCount: 0,
   getRowId: null,
+  rowMenut: null,
   onCellChange: null,
   onCellEdited: null,
+  onPageChange: null,
+  onPageSizeChange: null,
+  onRowMenuItemClick: null,
 };
 
 export default DataGrid;

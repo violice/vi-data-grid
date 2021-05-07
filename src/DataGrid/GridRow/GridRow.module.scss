@@ -14,4 +14,10 @@
   &:not(:last-child) {
     border-bottom: 1px solid #edeff7;
   }
+
+  &:hover {
+    td {
+      background-color: #ffefe7;
+    }
+  }
 }

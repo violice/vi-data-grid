@@ -1,16 +1,19 @@
 import React from 'react';
 import { GridCell } from '../GridCell';
+import { GridRowMenu } from '../GridRowMenu';
 import styles from './GridRow.module.scss';
 
 const GridRow = ({
   id,
   data,
   columns,
+  menu,
   updateCell,
   editedCell,
   startCellEditing,
   cancelCellEditing,
   finishCellEditing,
+  onMenuItemClick,
 }) => {
   return (
     <tr className={styles.root}>
@@ -64,6 +67,8 @@ const GridRow = ({
           </GridCell>
         );
       })}
+
+      {menu && <GridRowMenu rowId={id} rowData={data} items={menu} onItemClick={onMenuItemClick} />}
     </tr>
   );
 };

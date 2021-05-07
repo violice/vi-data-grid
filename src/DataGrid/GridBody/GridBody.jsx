@@ -6,14 +6,16 @@ import styles from './GridBody.module.scss';
 const GridBody = ({
   columns,
   rows,
-  isVirtualized,
   height,
+  isVirtualized,
+  rowMenu,
   scrollTop,
   editedCell,
   updateCell,
   startCellEditing,
   cancelCellEditing,
   finishCellEditing,
+  onRowMenuItemClick,
 }) => {
   let virtualized = isVirtualized && getVirtualized({ height, scrollTop, rows });
 
@@ -32,11 +34,13 @@ const GridBody = ({
             id={row.id}
             data={row.data}
             columns={columns}
+            menu={rowMenu}
             editedCell={editedCell}
             updateCell={updateCell}
             startCellEditing={startCellEditing}
             cancelCellEditing={cancelCellEditing}
             finishCellEditing={finishCellEditing}
+            onMenuItemClick={onRowMenuItemClick}
           />
         );
       })}

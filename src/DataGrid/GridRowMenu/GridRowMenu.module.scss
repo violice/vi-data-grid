@@ -1,0 +1,47 @@
+.root {
+  position: sticky;
+  right: 0;
+  z-index: 45;
+}
+
+.popper {
+  width: 180px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #656a81;
+  border-radius: 8px;
+  z-index: 55;
+  padding: 8px 0px;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #656a81;
+  color: #d8d9e4;
+  padding: 13px 10px;
+  border: none;
+  cursor: pointer;
+
+  span {
+    margin-right: 10px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: #ff7a00;
+    background: #54586c;
+    border-color: #54586c;
+
+    span {
+      svg {
+        path {
+          fill: #ff7a00;
+        }
+      }
+    }
+  }
+}
