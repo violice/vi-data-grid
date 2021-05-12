@@ -20,7 +20,7 @@ yarn add vi-data-grid
 
 ```js
 import { DataGrid } from 'vi-data-grid'; 
-import 'vi-data-grid/styles.csss'; 
+import 'vi-data-grid/dist/style.csss'; 
 
 const columns = [
   { header: 'Name', field: 'name' },
