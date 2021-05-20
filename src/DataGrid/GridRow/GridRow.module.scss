@@ -1,11 +1,15 @@
 .root {
   display: flex;
+  height: 40px;
+  background-color: #fff;
 
   td {
     background-color: #fff;
   }
 
   &:nth-of-type(odd) {
+    background-color: #f8f8f8;
+
     td {
       background-color: #f8f8f8;
     }
@@ -16,6 +20,8 @@
   }
 
   &:hover {
+    background-color: #ffefe7;
+
     td {
       background-color: #ffefe7;
     }

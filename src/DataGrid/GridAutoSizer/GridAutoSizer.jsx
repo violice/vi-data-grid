@@ -6,23 +6,20 @@ const GridAutoSizer = ({ children }) => {
   const [size, setSize] = useState();
 
   useEffect(() => {
-    if (rootEl) {
-      const resizeHandler = () => {
-        const { width, height } = rootEl.getBoundingClientRect();
-        setSize({ width, height });
-      };
+    const resizeObserver = new ResizeObserver(entries => {
+      const [entry] = entries;
+      const { width, height } = entry.contentRect;
+      setSize({ width, height });
+    });
 
-      resizeHandler();
+    rootEl && resizeObserver.observe(rootEl);
 
-      window.addEventListener('resize', resizeHandler);
-
-      return () => window.removeEventListener('resize', resizeHandler);
-    }
+    return () => rootEl && resizeObserver.unobserve(rootEl);
   }, [rootEl]);
 
   return (
     <div ref={setRootEl} className={styles.root}>
-      {size && children(size)}
+      {size && <div className={styles.content}>{children(size)}</div>}
     </div>
   );
 };

@@ -14,30 +14,17 @@ import useGridState from './useGridState';
 
 /* TODO:
 
-### Phase 1
-
-* [x] Pagination
-* [x] Header groups
-* [x] Row menu
-* [ ] Toolbar (title, reload, pagesize)
-* [ ] Icons (menu, sort)
-* [ ] Loading and NoData overlays
-* [ ] Infinite scroll
-* [ ] Save sort to local storage
-
-### Phase 2
-
-* Add column types (string, number, date, datetime, currency (price), percentage)
-* Add cellEditRenders Input, Select
-* Add cellRenders Link, Rating
-
-### Phase 3
-
-* Add GridContext (GridApi) to provide all props (data, methods) throw context (like material-ui data-grid) (???)
+* [ ] Clickable cells
+* [ ] Refactor headerGroups & rows (with cells) preparing
+* [ ] Refactor row menu api
+* [ ] Add column types (string, number, date, datetime, currency (price), percentage)
+* [ ] Add cellEditRenders for different column types
+* [ ] Add GridContext (GridApi) to provide all props (data, methods) throw context (like material-ui data-grid) (???)
 
 */
 
 const DataGrid = ({
+  className,
   columns: colDefs,
   rows: rowDefs,
   height: rootHeight,
@@ -78,7 +65,7 @@ const DataGrid = ({
   });
 
   return (
-    <GridRoot height={rootHeight}>
+    <GridRoot className={className} height={rootHeight}>
       <GridToolbar
         rowsCount={rowsCount}
         pagesCount={pagesCount}
@@ -121,6 +108,7 @@ const DataGrid = ({
 };
 
 DataGrid.propTypes = {
+  className: PropTypes.string,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       header: PropTypes.string.isRequired,
@@ -163,6 +151,7 @@ DataGrid.propTypes = {
 };
 
 DataGrid.defaultProps = {
+  className: null,
   rows: [],
   height: null,
   isVirtualized: false,

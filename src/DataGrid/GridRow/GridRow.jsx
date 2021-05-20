@@ -63,7 +63,7 @@ const GridRow = ({
             isEditable={column.isEditable}
             onClick={onClick}
           >
-            {cellRender || formattedValue || value}
+            {cellRender || formattedValue || value || '-'}
           </GridCell>
         );
       })}

@@ -70,7 +70,7 @@ export const prepareColumns = colDefs => {
           return {
             ...DEFAULT_COL_DEF,
             ...column,
-            left: calculateLeft(column, index,  headerGroups[1]),
+            left: calculateLeft(column, index, headerGroups[1]),
           };
         }),
       ],
@@ -151,9 +151,9 @@ const sortRows = (rows, sort) => {
       const { field, order } = sort;
       switch (order) {
         case 'ascending':
-          return rowA[field] > rowB[field] ? 1 : -1;
+          return rowA.data[field] > rowB.data[field] ? 1 : -1;
         case 'descending':
-          return rowA[field] > rowB[field] ? -1 : 1;
+          return rowA.data[field] < rowB.data[field] ? 1 : -1;
         case 'none':
         default:
           return 0;

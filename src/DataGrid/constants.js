@@ -8,7 +8,6 @@ export const DEFAULT_COL_DEF = {
   headerCellStyle: {},
 
   isSticky: false,
-  isMobileSticky: false,
   isSortable: false,
   isEditable: false,
 

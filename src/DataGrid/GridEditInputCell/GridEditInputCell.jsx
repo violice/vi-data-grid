@@ -26,6 +26,11 @@ const GridEditInputCell = ({
       className={styles.root}
       type={colDef.type}
       value={innerValue}
+      onFocus={() => {
+        if (colDef.type === 'number' && value === 0) {
+          setInnerValue('');
+        }
+      }}
       onChange={e => setInnerValue(e.target.value)}
       onBlur={() => {
         finishCellEditing({ rowId, field, value: innerValue, rowData });

@@ -1,8 +1,11 @@
 import { useReducer, useEffect } from 'react';
-import produce from 'immer';
+import produce, { setAutoFreeze } from 'immer';
+import logger from './logger';
 import { SORT_ORDERS } from './constants';
 import { compose, prepareColumns, prepareRows } from './helpers';
-import logger from './logger';
+
+// TODO: think about it
+setAutoFreeze(false);
 
 const reducer = compose(
   logger,
@@ -99,16 +102,16 @@ const useGridState = ({
 
   const changePage = page => {
     dispatch({ type: 'PAGE_CHANGED', payload: page });
-    onPageChange(page);
+    onPageChange && onPageChange(page);
   };
 
   const changePageSize = pageSize => {
     dispatch({ type: 'PAGE_SIZE_CHANGED', payload: pageSize });
-    onPageSizeChange(pageSize);
+    onPageSizeChange && onPageSizeChange(pageSize);
   };
 
   const updateCell = ({ rowId, field, value, rowData }) => {
-    dispatch({ type: 'CELL_CHANGED' });
+    dispatch({ type: 'CELL_CHANGED', payload: { rowId, field, value } });
     onCellChange && onCellChange({ rowId, field, value, rowData });
   };
 
@@ -121,11 +124,8 @@ const useGridState = ({
   };
 
   const finishCellEditing = ({ rowId, field, value, rowData }) => {
-    dispatch({
-      type: 'CELL_EDITING_FINISHED',
-      payload: { rowId, field, value },
-    });
-    onCellEdited && onCellEdited({ rowId, field, value, rowData });
+    dispatch({ type: 'CELL_EDITING_FINISHED', payload: { rowId, field, value } });
+    onCellEdited && rowData[field] !== value && onCellEdited({ rowId, field, value, rowData });
   };
 
   return {

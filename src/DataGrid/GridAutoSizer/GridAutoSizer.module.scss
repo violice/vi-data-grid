@@ -1,5 +1,12 @@
 .root {
+  position: relative;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex-grow: 1;
+}
+
+.content {
+  overflow: visible;
+  height: 0px;
+  width: 0px;
 }
