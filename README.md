@@ -2,20 +2,6 @@
 
 Data grid component for react
 
-## Installation
-
-npm
-
-```sh
-npm i -s vi-data-grid
-```
-
-yarn
-
-```sh
-yarn add vi-data-grid
-```
-
 ## Usage
 
 ```js
