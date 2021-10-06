@@ -5,9 +5,6 @@ Data grid component for react
 ## Usage
 
 ```js
-import { DataGrid } from 'vi-data-grid'; 
-import 'vi-data-grid/dist/style.csss'; 
-
 const columns = [
   { header: 'Name', field: 'name' },
   { header: 'Age', field: 'age' },
