@@ -45,6 +45,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1",
     "sass": "^1.32.11",
-    "vite": "^2.1.5"
+    "vite": "^2.9.13"
   }
 }
